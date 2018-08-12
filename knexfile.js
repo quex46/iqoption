@@ -21,7 +21,4 @@ module.exports = {
     stub:      'migrations/.migration.stub',
     tableName: '_migrations',
   },
-  seeds: {
-    stub: 'seeds/.seed.stub',
-  },
 };
