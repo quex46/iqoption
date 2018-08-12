@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "docker": "docker-compose up -d",
-    "test": "npx mocha run_tests.js",
+    "test": "mocha --recursive -s 1500 -t 5000",
     "wipe": "docker-compose down",
     "dev": "nodemon entrypoint.js",
     "start": "node entrypoint.js"
@@ -20,7 +20,9 @@
   "homepage": "https://github.com/quex46/iqoption#readme",
   "devDependencies": {
     "mocha": "^5.2.0",
-    "nodemon": "^1.18.3"
+    "nodemon": "^1.18.3",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2"
   },
   "dependencies": {
     "amqplib": "^0.5.2",
