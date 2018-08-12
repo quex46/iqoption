@@ -162,7 +162,7 @@ module.exports = class AuthService extends Service {
   }
 
   static async hashPassword({ password }) {
-    return bcrypt.hash(password, 11);
+    return bcrypt.hash(password, 10);
   }
 
   static toUserObject(row) {
@@ -170,7 +170,6 @@ module.exports = class AuthService extends Service {
       id:     row.id,
       name:   row.name,
       avatar: row.avatar || undefined,
-      login:  row.login,
     };
   }
 };
