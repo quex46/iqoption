@@ -1,0 +1,17 @@
+{
+  "folders":
+  [
+    {
+      "path": ".",
+      "folder_exclude_patterns": [
+        "node_modules"
+      ]
+    }
+  ],
+  "settings": {
+    "translate_tabs_to_spaces": true,
+    "tab_size": 2,
+    "rulers": [80, 100],
+    "ensure_newline_at_eof_on_save": true
+  }
+}

@@ -1,0 +1,11 @@
+exports.up = knex => knex.raw(`
+
+-- Write SQL here...
+
+`);
+
+exports.down = knex => knex.raw(`
+
+-- Write SQL here...
+
+`);

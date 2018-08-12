@@ -1,0 +1,87 @@
+{
+  "name": "iqoption",
+  "private": true,
+  "scripts": {
+    "docker": "docker-compose up -d",
+    "test": "npx mocha run_tests.js",
+    "wipe": "docker-compose down",
+    "dev": "nodemon entrypoint.js",
+    "start": "node entrypoint.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quex46/iqoption.git"
+  },
+  "author": "Artem Bronitsky <quex@yandex.ru>",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/quex46/iqoption/issues"
+  },
+  "homepage": "https://github.com/quex46/iqoption#readme",
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.3"
+  },
+  "dependencies": {
+    "amqplib": "^0.5.2",
+    "bcrypt": "^3.0.0",
+    "bluebird": "^3.5.1",
+    "dotenv": "^6.0.0",
+    "ioredis": "^3.2.2",
+    "knex": "^0.15.2",
+    "koa": "^2.5.2",
+    "koa-body": "^4.0.4",
+    "koa-router": "^7.4.0",
+    "moleculer": "^0.13.1",
+    "pg": "^7.4.3",
+    "ws": "^6.0.0"
+  },
+  "nodemonConfig": {
+    "quiet": true,
+    "watch": [
+      "services",
+      "mixins",
+      ".env"
+    ],
+    "ignore": [
+      "migrations",
+      "seeds"
+    ]
+  },
+  "eslintConfig": {
+    "env": {
+      "mocha": true,
+      "node": true
+    },
+    "globals": {
+      "assert": true
+    },
+    "extends": [
+      "airbnb-base"
+    ],
+    "rules": {
+      "no-multi-assign": "off",
+      "import/no-extraneous-dependencies": "off",
+      "no-param-reassign": "off",
+      "no-plusplus": "off",
+      "no-underscore-dangle": [
+        "error",
+        {
+          "allowAfterThis": true
+        }
+      ],
+      "key-spacing": [
+        "error",
+        {
+          "align": "value"
+        }
+      ],
+      "no-multi-spaces": [
+        "error",
+        {
+          "ignoreEOLComments": true
+        }
+      ]
+    }
+  }
+}
