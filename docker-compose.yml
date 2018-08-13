@@ -2,26 +2,119 @@ version: '3.1'
 
 services:
 
-  redis:
-    image: redis:4.0.11-alpine
+  nginx:
+    image: nginx:1.15.2-alpine
     ports:
-      - ${REDIS_PORT}:6379
-    command: redis-server --requirepass ${REDIS_PASSWORD}
+      - ${AUTH_LISTEN_PORT}:5501
+      - ${CHAT_LISTEN_PORT}:5601
+      - ${WS_LISTEN_PORT}:5701
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
 
-  postgres:
-    image: postgres:9.6.9-alpine
-    ports:
-      - ${POSTGRES_PORT}:5432
+  auth1:
+    build:
+      context: ./
     environment:
-      POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+    command: auth
 
-  rabbitmq:
-    image: rabbitmq:3.7.7-management-alpine
+  auth2:
+    build:
+      context: ./
     environment:
-      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
-      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD}
-    ports:
-      - ${RABBITMQ_PORT}:5672
-      - 35672:15672
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+    command: auth
+
+  auth3:
+    build:
+      context: ./
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+    command: auth
+
+  chat1:
+    build:
+      context: ./
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+    command: chat
+
+  chat2:
+    build:
+      context: ./
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+    command: chat
+
+  chat3:
+    build:
+      context: ./
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+    command: chat
+
+  ws1:
+    build:
+      context: ./
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+    command: ws
+
+  ws2:
+    build:
+      context: ./
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+    command: ws
+
+  ws3:
+    build:
+      context: ./
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+    command: ws

@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "nodemon entrypoint.js",
     "start": "node entrypoint.js",
-    "storage": "docker-compose up -d",
+    "storage": "docker-compose -f docker-compose.override.yml up -d",
     "migrations": "npx knex migrate:latest",
     "test": "mocha --recursive -s 1500 -t 5000"
   },
