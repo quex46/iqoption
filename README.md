@@ -29,7 +29,7 @@ docker-compose -f docker-compose.override.yml && sleep 15 && npm i && npm run mi
 docker-compose up -d && sleep 15 && npm i && npm run migrations
 ```
 
-Будет запущено по 3 инстанса каждого сервиса (всего 9) с балансировкой через nginx.
+Будет запущено по 3 инстанса каждого сервиса (всего 9) с балансировкой через nginx, а также требуемое окружение (RabbitMQ, Redis, PostgreSQL).
 
 ## Запуск тестов
 
