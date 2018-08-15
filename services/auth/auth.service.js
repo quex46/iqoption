@@ -21,10 +21,6 @@ module.exports = class AuthService extends Service {
         port: Number(AUTH_LISTEN_PORT) || 5501,
       },
 
-      created() {
-        server(this);
-      },
-
       async started() {
         const { port } = this.settings;
 
